@@ -8,6 +8,6 @@ let data = [
 ];
 
 ReactDOM.render(
-    <CommentBox />,
+    <CommentBox data={data}/>,
     document.getElementById('content')
 );
