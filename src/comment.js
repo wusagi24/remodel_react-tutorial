@@ -2,14 +2,19 @@ import React, { Component } from 'react';
 import Remarkable from 'remarkable';
 
 class Comment extends Component {
-    render() {
+    rawMarkup() {
         let md = new Remarkable();
+        let rawMarkup = md.render(this.props.children.toString());
+        return { __html: rawMarkup };
+    }
+
+    render() {
         return (
             <div className="commnet">
                 <h2 className="commentAuthor">
                     {this.props.author}
                 </h2>
-                {md.render(this.props.children.toString())}
+                <span dangerouslySetInnerHTML={this.rawMarkup()} />
             </div>
         );
     }
