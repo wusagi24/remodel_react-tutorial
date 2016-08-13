@@ -4,12 +4,7 @@ import CommentList from './comment_list';
 import CommentForm from './comment_form';
 
 class CommentBox extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {data: []};
-    }
-
-    componentDidMount() {
+    loadCommentsFromServer() {
         $.ajax({
             url: this.props.url,
             dataType: 'json',
@@ -21,6 +16,16 @@ class CommentBox extends Component {
         .fail((xhr, status, err) => {
             console.error(this.props.url, status, err.toString());
         });
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = {data: []};
+    }
+
+    componentDidMount() {
+        this.loadCommentsFromServer();
+        setInterval(this.loadCommentsFromServer.bind(this), this.props.pollInterval);
     }
 
     render() {
