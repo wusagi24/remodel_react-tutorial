@@ -19,7 +19,19 @@ class CommentBox extends Component {
     }
 
     handleCommentSubmit(comment) {
-        // TODO: submit to the server and refresh the list
+        $.ajax({
+            url: this.props.url,
+            dataType: 'json',
+            type: 'POST',
+            data: comment,
+        })
+        .done((data) => {
+            this.setState({data: data});
+        })
+        .fail((xhr, status, err) => {
+            console.error(this.props.url, status, err.toString());
+        });
+
     }
 
     constructor(props) {
