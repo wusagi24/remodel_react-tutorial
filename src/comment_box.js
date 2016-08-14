@@ -18,6 +18,10 @@ class CommentBox extends Component {
         });
     }
 
+    handleCommentSubmit(comment) {
+        // TODO: submit to the server and refresh the list
+    }
+
     constructor(props) {
         super(props);
         this.state = {data: []};
@@ -33,7 +37,7 @@ class CommentBox extends Component {
             <div className="commentBox">
                 <h1>Comments</h1>
                 <CommentList data={this.state.data}/>
-                <CommentForm />
+                <CommentForm onCommentSubmit={this.handleCommentSubmit.bind(this)}/>
             </div>
         );
     };
