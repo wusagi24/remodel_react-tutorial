@@ -3,9 +3,11 @@ import React, { Component } from 'react';
 class CommentForm extends Component {
     render() {
         return (
-            <div className="commentForm">
-                Hello, world! I am a CommentForm.
-            </div>
+            <form className="commentForm">
+                <input type="text" placeholder="Your name" />
+                <input type="text" placeholder="Say someting..." />
+                <input type="submit" value="Post" />
+            </form>
         );
     }
 }
