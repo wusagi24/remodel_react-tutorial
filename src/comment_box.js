@@ -19,6 +19,10 @@ class CommentBox extends Component {
     }
 
     handleCommentSubmit(comment) {
+        let comments = this.state.data;
+        comment.id = Date.now();
+        let newComments = comments.concat([comment]);
+        this.setState({data: newComments});
         $.ajax({
             url: this.props.url,
             dataType: 'json',
@@ -29,6 +33,7 @@ class CommentBox extends Component {
             this.setState({data: data});
         })
         .fail((xhr, status, err) => {
+            this.setState({data: comments});
             console.error(this.props.url, status, err.toString());
         });
 
