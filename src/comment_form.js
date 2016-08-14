@@ -21,7 +21,7 @@ class CommentForm extends Component {
         if (!text || !author) {
             return;
         }
-        // TODO: サーバーに要求を送信
+        this.props.onCommentSubmit({author: author, text: text});
         this.setState({author: '', text: ''});
     }
 
